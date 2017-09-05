@@ -1,0 +1,12 @@
+{
+	"make": "mitsubishi",
+	"model": "eclipse",
+	"year": 2011,
+	"color": "black",
+	"features": [
+		"sunroof", "heated seats", "bluetooth"
+	],
+	"licensePlateNum": "AAA7AAA",
+	"mileage": 85000,
+	"underWarranty": false
+}

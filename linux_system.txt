@@ -1,0 +1,6 @@
+Your ID: KevinMikus
+Pa$$: Jy9kC3_u~G
+
+ssh KevinMikus@oz-ist-linux-fa17-411.abington.psu.edu -p 101
+
+ssh KevinMikus@128.118.251.244 -p 101

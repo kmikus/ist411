@@ -1,0 +1,29 @@
+What did you learn about the advantages of using JSON for handling payloads?
+What did you learn about the basic structure of JSON?
+Write a JSON object example for the car you drive.
+What programming languages work well with JSON?
+What is encoding and what encoding methods does JSON support?
+
+
+
+1. JSON is comparable to XML in that it is a language-independent format to transmit data. It uses (mostly) Javascript syntax, so it is easy to read and parse. It's supported by a plethora of different languages. Typically JSON is lighter than XML which results in less data usage and overhead. JSON is also dynamic, yet concise allowing you to mix Javascript-like objects and types such Booleans and integers. JSON also works extremely well with AJAX over XML due to Javascript's native support of JSON.
+
+2. JSON uses Javascript objects as its basic notation, hence the name Javascript object notation. Curly braces encapsulate the objects with multiple key-value pairs being sepearated by a comma. JSON objects can store any other type of objects in a tree-style, even more objects. JSON can also store data types such as Arrays (denoted by []), Numbers, Strings, Booleans, and null.
+
+3.
+{
+	"make": "mitsubishi",
+	"model": "eclipse",
+	"year": 2011,
+	"color": "black",
+	"features": [
+		"sunroof", "heated seats", "bluetooth"
+	],
+	"licensePlateNum": "AAA7AAA",
+	"mileage": 85000,
+	"underWarranty": false
+}
+
+4. A ton of them, but JSON.org lists support for popular languages like C, C++, C#, Cobol, ColdFusion, Fortran, Go, Haskell, Java, Javascript, Lua, Matlab, Objective C, Perl, PHP, Python, R, Ruby, VBA and several others. Obviously Javascript works the best given it has native support for JSON, but JSON is extremely popular and has support from most major languages, frameworks, and browsers.
+
+5. Encoding is a large topic, but in general an encoding standard maps "code points" or specific byte values to corresponding letters or symbols. For example U+004B produces the letter "K" in Unicode. Unicode can be implemented in different encoding itself, such as UTF-8 which uses a single byte for the traditional ASCII characters (the first 128 code points) and up to four bytes for the remainder of the Unicode table. JSON supports UTF-8, UTF-16, and UTF-32. These encodings include support for the entire Unicode character set.
