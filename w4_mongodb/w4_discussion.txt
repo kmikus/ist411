@@ -1,0 +1,18 @@
+1. MongoDB has several advantages as a DBMS such as ease-of-use,  speed, horizontal scaling, and Javascript functionality. MongoDB stores its data in documents which consist of key-value pairs in a JSON-style format. This allows programmers to easily map objects to database structures without spreading them across multiple tables. NoSQL databases such as Mongo are faster at most operations, other than complex queries. MongoDB scales horizontally using a technique known as "sharding" which spreads the entire data-set across multiple servers. Finally, you can use Javascript on the server-side to be sent directly to be executed on the database.
+
+2. NoSQL is not new, but recently has become popular because of Web 2.0. NoSQL databases have a couple trade-offs from the traditional relational model. The biggest challenge is the large investment into the relational model already. Switching from a relational model to a more object-oriented model would be almost impossible for medium to large scale systems with large amounts of data. NoSQL also sacrifices consistency and don't provide true ACID transactions. The advantage of not knowing your schema as you build your application can turn into a severe disadvantage down the road.
+
+3. MongoDB supports Javascript. You can use Javascript inside of queries as well as in the Mongo Shell interface.
+
+4. PyMongo is a package for Python that allows you to interface with MongoDB. You can create an instance of the MongoDB client and then perform the same operations that you can in the Mongo shell.
+
+5.
+from pymongo import MongoClient
+
+client = MongoClient('localhost', 27017)
+db = client.test_database
+collection = db.test_collection
+doc= collection.find()
+for post in doc:
+	print(post)
+client.close()

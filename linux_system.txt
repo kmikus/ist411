@@ -4,3 +4,13 @@ Pa$$: Jy9kC3_u~G
 ssh KevinMikus@oz-ist-linux-fa17-411.abington.psu.edu -p 101
 
 ssh KevinMikus@128.118.251.244 -p 101
+
+# Secure File Transfer
+scp -P 101 [FILENAME] KevinMikus@128.118.251.244:~
+
+MongoDB:
+user: kmikus
+pw: pXuMUH2KOwNvTvsc
+
+connect string: 
+mongo "mongodb://cluster0-shard-00-00-1isfr.mongodb.net:27017,cluster0-shard-00-01-1isfr.mongodb.net:27017,cluster0-shard-00-02-1isfr.mongodb.net:27017/test?replicaSet=Cluster0-shard-0" --authenticationDatabase admin --ssl --username kmikus --password pXuMUH2KOwNvTvsc
