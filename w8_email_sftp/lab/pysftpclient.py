@@ -18,10 +18,13 @@ try:
 		try:
 			r = ""
 			while(r != "x"):
-				r = input("parameters = [get | put]: ")
+				r = input("parameters = [list | get | put]: ")
 				if (r == "get"):
 					sftp.get('payloadReceiveMikus.json')
 					print("Received payload")
+				elif (r == "list"):
+					for file in (sftp.listdir(remotepath='/home/ftpuser/')):
+						print(file)
 				elif (r == "put"): 
 					sftp.put('payloadSendMikus.json', remotepath='/home/ftpuser/payloadSendMikus.json')
 					print("Sent payload")

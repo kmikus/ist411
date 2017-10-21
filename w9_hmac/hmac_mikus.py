@@ -6,20 +6,20 @@
 # Last Date Changed: 2017-10-20
 # Rev: 0.1
 
-import pysftp, sys, json
+import pysftp, sys, json, hmac, os
 
 # setting up connection ftp server
 cnopts = pysftp.CnOpts()
 cnopts.hostkeys = None
 # Windows Subsystem for Linux has trouble resolving using DNS, using IP address instead
-cinfo = {'cnopts':cnopts,'host':'128.118.251.244','username':'ftpuser','password':'test1234','port': 101}
+cinfo = {'cnopts':cnopts,'host':'oz-ist-linux-fa17-411','username':'ftpuser','password':'test1234','port': 101}
 
 # creating json payload
 payload_dict = {'message': 'I am a message'}
 md5_sig = hmac.new(payload_dict['message'].encode(), digestmod='md5').hexdigest()
 sha1_sig = hmac.new(payload_dict['message'].encode(), digestmod='sha1').hexdigest()
 payload_dict['md5'], payload_dict['sha1'] = md5_sig, sha1_sig
-with open('hmac_payload_mikus.json', 'w') as outFile:
+with open('payload_mikus_hmac.json', 'w') as outFile:
 	outFile.write(json.dumps(payload_dict, indent=4))
 
 # establish connection
@@ -31,13 +31,22 @@ try:
 			while(r != "x"):
 				r = input("parameters = [get | put | list]: ")
 				if (r == "get"):
-					sftp.get('hmac_payload_mikus.json')
-					print("Received payload")
+					sftp.get('payload_mikus_hmac.json')
+					with open('payload_mikus_hmac.json', 'r') as fh:
+						decoded_json = json.load(fh)
+						md5_rec, sha1_rec = decoded_json['md5'], decoded_json['sha1']
+						if(md5_sig == md5_rec and sha1_sig == sha1_rec):
+							print('Message verified')
+							print("Received payload")
+						else:
+							os.remove('payload_mikus_hmac.json')
+							print('Invalid signature, file removed, exiting')
+							break
 				elif (r == "put"):
-					sftp.put('hmac_payload_mikus.json', remotepath='/home/ftpuser/hmac_payload_mikus.json')
+					sftp.put('payload_mikus_hmac.json', remotepath='/home/ftpuser/payload_mikus_hmac.json')
 					print("Sent payload")
 				elif (r == "list"):
-					for file in (sftp.listdir(remotepath='home/ftpuser/')):
+					for file in (sftp.listdir(remotepath='/home/ftpuser/')):
 						print(file)
 				else:
 					print("Invalid command, try again")
