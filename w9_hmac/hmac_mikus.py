@@ -22,6 +22,10 @@ payload_dict['md5'], payload_dict['sha1'] = md5_sig, sha1_sig
 with open('payload_mikus_hmac.json', 'w') as outFile:
 	outFile.write(json.dumps(payload_dict, indent=4))
 
+# Modified to show signature before and after
+print("MD5 digest: ", md5_sig)
+print("SHA1 digest: ", sha1_sig)
+
 # establish connection
 try:
 	with pysftp.Connection(**cinfo) as sftp:
@@ -34,10 +38,14 @@ try:
 					sftp.get('payload_mikus_hmac.json')
 					with open('payload_mikus_hmac.json', 'r') as fh:
 						decoded_json = json.load(fh)
+						message = decoded_json['message']
 						md5_rec, sha1_rec = decoded_json['md5'], decoded_json['sha1']
+						print("MD5 digest received: ", md5_rec)
+						print("SHA1 digest received: ", sha1_rec)
 						if(md5_sig == md5_rec and sha1_sig == sha1_rec):
 							print('Message verified')
 							print("Received payload")
+							print('Message: ', message)
 						else:
 							os.remove('payload_mikus_hmac.json')
 							print('Invalid signature, file removed, exiting')
