@@ -17,11 +17,6 @@ class Decompressor(object):
 		payloadDecomp = zlib.decompress(data)
 		return payloadDecomp
 
-	def genChecksum(self, data):
-		payloadDecomp = self.decomp(data)
-		checksum = zlib.crc32(payloadDecomp)
-		return checksum
-
 # setup listener
 daemon = Pyro4.Daemon()
 
