@@ -24,6 +24,3 @@ try:
 	fh.close()
 except Exception as e:
 	print(e)
-
-	# obj2 = AES.new("This is a key123", AES.MODE_CBC, "This is an IV456")
-	# print(obj2.decrypt(ciphertext))
